@@ -10,3 +10,8 @@
 5. Rollout status `kubectl rollout status deployment/k8s-node-demo-depl`
 6. View Rollout history `kubectl rollout history deployment/k8s-node-demo-depl`
 7. Rolbak to specific version `kubectl rollout undo deployment/k8s-node-demo-depl --to-revision=1`
+
+## Steps to run - Declarative
+
+1. Run `kubectl apply -f deployment.yml`
+2. Delete `kubectl delete -f deployment.yml`
