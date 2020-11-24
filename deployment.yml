@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-node-demo-depl
+spec:
+  selector:
+    matchLabels:
+      app: k8s-node-demo
+  replicas: 0
+  template:
+    metadata:
+      labels:
+        app: k8s-node-demo
+    spec:
+      containers:
+        - name: k8s-node-demo
+          image: gagandeep39/k8s-node-demo:2
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '250m'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-node-demo-srv
+spec:
+  selector:
+    app: k8s-node-demo
+  ports:
+    - port: 81
+      targetPort: 8080
+      protocol: TCP
+  type: LoadBalancer
