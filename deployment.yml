@@ -15,10 +15,18 @@ spec:
       containers:
         - name: k8s-node-demo
           image: gagandeep39/k8s-node-demo:2
+          imagePullPolicy: Always
           resources:
             limits:
               memory: '128Mi'
               cpu: '250m'
+          livenessProbe:
+              httpGet:
+                path: /
+                port: 8080
+              periodSeconds: 10
+              # First check after
+              initialDelaySeconds: 10
 ---
 apiVersion: v1
 kind: Service
